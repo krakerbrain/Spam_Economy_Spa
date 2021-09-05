@@ -11,4 +11,4 @@ Desafio Modulo 6 - Backend en Node - Capitulo Trabajando con Nodemail - Grupo2
 
 **V2**
 -Se agregaron validaciones a los campos "Para" y "Asunto"
--Se agregó restricción que permite No permite enviar solo un correo
+-Se agregó restricción que NO permite enviar solo un correo
