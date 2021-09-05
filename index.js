@@ -17,7 +17,7 @@ http
       //   valores del dólar, euro, uf y utm. Este template debe ser concatenado al mensaje
       //   descrito por el usuario en el formulario HTML.
       const { data } = await axios.get("https://mindicador.cl/api");
-      textoSalida = ` ${contenido}
+      textoSalida = ` ${contenido}\n \n
                         Hola! Los indicadores económicos de hoy son los siguientes:\n \n
                         El valor del dolar el dia de hoy es:${data.dolar.valor} \n \n
                         El valor del euro el dia de hoy es:${data.euro.valor} \n \n
@@ -36,16 +36,16 @@ http
     if (req.url.startsWith("/mailing")) {
       getCorreosAsuntoContenido().then((data) => {
         const { correos, asunto, textoSalida } = data;
-        if (correos !== "" && asunto !== "" && textoSalida !== "") {
+        if (correos !== "" && asunto !== "" && textoSalida !== "" && correos.includes(",")) {
           escribeArchivo(data, textoSalida);
-          enviar(correos, asunto, textoSalida);
+          enviar(correos.split(","), asunto, textoSalida);
           // 4. Enviar un mensaje de éxito o error por cada intento de envío de correos electrónicos
           fs.readFile("index.html", "utf8", (err, data) => {
             res.write(`<p class='alert alert-info w-25 m-auto text-center'>Correo enviado con éxito</p>`);
             res.end();
           });
         } else {
-          res.write(`<p class='alert alert-info w-25 m-auto text-danger text-center'>Faltan datos por llenar!!!</p>`);
+          res.write(`<p class='alert alert-info w-25 m-auto text-danger text-center'>Faltan datos por llenar o intenta enviar solo un (1) correo</p>`);
           res.end();
         }
       });

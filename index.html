@@ -23,9 +23,9 @@
     <form action="http://localhost:3000/mailing" class="container p-5">
       <h5>
         Correos:
-        <input class="w-100 form-control" name="correos" placeholder="Ingrese los correos separados por ',' " />
+        <input class="w-100 form-control" name="correos" placeholder="Ingrese los correos separados por ',' " required />
       </h5>
-      <h5>Asunto: <input name="asunto" class="form-control" /></h5>
+      <h5>Asunto: <input name="asunto" class="form-control" required /></h5>
       <h5>Mensaje: <br /><textarea id="summernote" name="contenido" class="form-control" cols="30" rows="10"></textarea></h5>
 
       <button class="btn btn-warning">Enviar correos masivos</button>
